@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eshopping.dao.CommodityDao">
+    <insert id="insert" parameterType="com.eshopping.entity.Commodity" >
+        insert into commodity
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="commodityId != null" >
+                commodityID,
+            </if>
+            <if test="commodityName != null" >
+                commodityName,
+            </if>
+            <if test="commodityClass != null" >
+                commodityClass,
+            </if>
+            <if test="manufacturer != null" >
+                Manufacturer,
+            </if>
+            <if test="commodityPrice != null" >
+                commodityPrice,
+            </if>
+            <if test="fcPrice != null" >
+                fcPrice,
+            </if>
+            <if test="commodityAmount != null" >
+                commodityAmount,
+            </if>
+            <if test="commodityLeaveNum != null" >
+                commodityLeaveNum,
+            </if>
+            <if test="regTime != null" >
+                RegTime,
+            </if>
+            <if test="commodityDepict != null" >
+                commodityDepict,
+            </if>
+            <if test="image != null" >
+                image,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="commodityid != null" >
+                #{commodityId,jdbcType=INTEGER},
+            </if>
+            <if test="commodityname != null" >
+                #{commodityName,jdbcType=VARCHAR},
+            </if>
+            <if test="commodityclass != null" >
+                #{commodityClass,jdbcType=INTEGER},
+            </if>
+            <if test="manufacturer != null" >
+                #{manufacturer,jdbcType=VARCHAR},
+            </if>
+            <if test="commodityprice != null" >
+                #{commodityPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="fcprice != null" >
+                #{fcPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="commodityamount != null" >
+                #{commodityAmount,jdbcType=INTEGER},
+            </if>
+            <if test="commodityleavenum != null" >
+                #{commodityLeaveNum,jdbcType=INTEGER},
+            </if>
+            <if test="regtime != null" >
+                #{regTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="commoditydepict != null" >
+                #{commodityDepict,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="image != null" >
+                #{image,jdbcType=LONGVARBINARY},
+            </if>
+        </trim>
+    </insert>
+
+</mapper>

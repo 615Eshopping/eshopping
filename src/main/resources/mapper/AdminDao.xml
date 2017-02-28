@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eshopping.dao.AdminDao">
+    <resultMap id="AdminResultMap" type="com.eshopping.entity.Admin" >
+        <id column="adminID" property="adminId" jdbcType="INTEGER" />
+        <result column="username" property="userName" jdbcType="VARCHAR" />
+        <result column="password" property="password" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <select id="getAdminById" parameterType="INTEGER" resultMap="AdminResultMap">
+        SELECT * FROM admins WHERE adminId = #{adminId}
+    </select>
+
+    <insert id="addAdmin" parameterType="Admin">
+        INSERT INTO admins(adminID,userName,password)
+        VALUES (#{adminId},#{userName},#{password})
+    </insert>
+
+    <update id="updateAdmin" parameterType="Admin">
+        update admins
+        <set >
+            <if test="userName != null" >
+                username = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null" >
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where adminId = #{adminId,jdbcType=INTEGER}
+    </update>
+    
+    <delete id="deleteAdmin" parameterType="Admin">
+         delete from admins
+         where adminID = #{adminId,jdbcType=INTEGER}
+    </delete>
+</mapper>

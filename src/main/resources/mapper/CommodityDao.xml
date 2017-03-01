@@ -33,7 +33,7 @@
     </sql>
 
     <insert id="save" parameterType="Commodity">
-        insert IGNORE into commodity (commodityID, commodityName, commodityClass,
+        insert into commodity (commodityID, commodityName, commodityClass,
                                 Manufacturer, commodityPrice, fcPrice,
                                 commodityAmount, commodityLeaveNum, RegTime,
                                 commodityDepict, image)
@@ -46,11 +46,6 @@
     <delete id="deleteById" parameterType="Integer">
         DELETE FROM commodity
         WHERE commodityId = #{commodityId}
-    </delete>
-
-    <delete id="deleteByCommodityName" parameterType="String">
-        DELETE  FROM commodity
-        WHERE commodityName = #{commodityName}
     </delete>
 
     <select id="findById" parameterType="Integer" resultMap="CommodityResultMap">
@@ -96,10 +91,10 @@
                 image = #{image,jdbcType=LONGVARBINARY},
             </if>
         </set>
-        WHERE commodityID = #{commodityId,jdbcType=INTEGER}
+        WHERE commodityID = #{commodityId,jdbcType=INTEGER} AND commodityClass = #{commodityClass.commodityClassId,jdbcType=INTEGER}
     </update>
 
-    <update id="updateByName" parameterType="Commodity">
+<!--    <update id="updateByName" parameterType="Commodity">
         UPDATE commodity
         <set>
             <if test="commodityName != null" >
@@ -136,7 +131,7 @@
             </if>
         </set>
         WHERE commodityName = #{commodityName,jdbcType=INTEGER}
-    </update>
+    </update>-->
 
 
 </mapper>

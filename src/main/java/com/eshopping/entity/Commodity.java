@@ -1,18 +1,20 @@
 package com.eshopping.entity;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
  * Created by AnKh on 2017/2/20.
  */
+
 public class Commodity {
     private Integer commodityId;			//商品编号
     private String commodityName;			//商品名称
     private CommodityClass commodityClass;	//商品种类
     private String manufacturer;			//生产厂家
     private String commodityDepict;			//商品描述
-    private Double commodityPrice;			//商品价格
-    private Double fcPrice;					//帆成网价格
+    private BigDecimal commodityPrice;			//商品价格
+    private BigDecimal fcPrice;					//帆成网价格
     private Integer commodityAmount;		//商品总数量
     private Integer commodityLeaveNum;		//商品剩余数量
     private Date regTime;					//商品上架时间
@@ -58,19 +60,20 @@ public class Commodity {
         this.commodityDepict = commodityDepict;
     }
 
-    public Double getCommodityPrice() {
+
+    public BigDecimal getCommodityPrice() {
         return commodityPrice;
     }
 
-    public void setCommodityPrice(Double commodityPrice) {
+    public void setCommodityPrice(BigDecimal commodityPrice) {
         this.commodityPrice = commodityPrice;
     }
 
-    public Double getFcPrice() {
+    public BigDecimal getFcPrice() {
         return fcPrice;
     }
 
-    public void setFcPrice(Double fcPrice) {
+    public void setFcPrice(BigDecimal fcPrice) {
         this.fcPrice = fcPrice;
     }
 

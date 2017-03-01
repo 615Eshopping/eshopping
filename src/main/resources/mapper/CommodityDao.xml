@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eshopping.dao.CommodityDao">
+    <!--配置注意-->
+    <resultMap id="CommodityResultMap" type="com.eshopping.entity.Commodity" >
+        <id column="commodityID" property="commodityId" jdbcType="INTEGER" />
+        <result column="commodityName" property="commodityName" jdbcType="VARCHAR" />
+        <result column="Manufacturer" property="manufacturer" jdbcType="VARCHAR" />
+        <result column="commodityDepict" property="commodityDepict" jdbcType="LONGVARCHAR" />
+        <result column="commodityPrice" property="commodityPrice" jdbcType="DECIMAL" />
+        <result column="fcPrice" property="fcPrice" jdbcType="DECIMAL" />
+        <result column="commodityAmount" property="commodityAmount" jdbcType="INTEGER" />
+        <result column="commodityLeaveNum" property="commodityLeaveNum" jdbcType="INTEGER" />
+        <result column="RegTime" property="regTime" jdbcType="TIMESTAMP" />
+        <result column="image" property="image" jdbcType="LONGVARBINARY" />
+        <association column="commodityClass" property="commodityClass" select="getCommodityClass"/>
+    </resultMap>
+    <!--有外键时候的增删查改-->
+    <select id="getCommodityClass" parameterType="Integer" resultMap="CommodityClassResultMap">
+        SELECT commodityClassID,commodityClassName FROM commodityclass WHERE commodityClassID=#{commodityClass}
+    </select>
+    
+    <resultMap id="CommodityClassResultMap" type="com.eshopping.entity.CommodityClass">
+        <id column="commodityClassID" property="commodityClassId" jdbcType="INTEGER"/>
+        <result column="commidityClassName" property="commidityClassName" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        commodityID, commodityName, commodityClass, Manufacturer, commodityPrice, fcPrice,
+        commodityAmount, commodityLeaveNum, RegTime,commodityDepict, image
+    </sql>
+
+    <insert id="save" parameterType="Commodity">
+        insert IGNORE into commodity (commodityID, commodityName, commodityClass,
+                                Manufacturer, commodityPrice, fcPrice,
+                                commodityAmount, commodityLeaveNum, RegTime,
+                                commodityDepict, image)
+        values (#{commodityId,jdbcType=INTEGER}, #{commodityName,jdbcType=VARCHAR}, #{commodityClass.commodityClassId,jdbcType=INTEGER},
+                 #{manufacturer,jdbcType=VARCHAR}, #{commodityPrice,jdbcType=DECIMAL}, #{fcPrice,jdbcType=DECIMAL},
+                 #{commodityAmount,jdbcType=INTEGER}, #{commodityLeaveNum,jdbcType=INTEGER}, #{regTime,jdbcType=TIMESTAMP},
+                 #{commodityDepict,jdbcType=LONGVARCHAR}, #{image,jdbcType=LONGVARBINARY})
+    </insert>
+
+    <delete id="deleteById" parameterType="Integer">
+        DELETE FROM commodity
+        WHERE commodityId = #{commodityId}
+    </delete>
+
+    <delete id="deleteByCommodityName" parameterType="String">
+        DELETE  FROM commodity
+        WHERE commodityName = #{commodityName}
+    </delete>
+
+    <select id="findById" parameterType="Integer" resultMap="CommodityResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from commodity
+        where commodityId = #{commodityId,jdbcType=INTEGER}
+    </select>
+
+    <update id="updateById" parameterType="Commodity">
+        UPDATE commodity
+        <set>
+            <if test="commodityName != null" >
+                commodityName = #{commodityName,jdbcType=VARCHAR},
+            </if>
+            <if test="commodityClass != null" >
+               <if test="commodityClass.commodityClassId != null">
+                   commodityClass = #{commodityClass.commodityClassId,jdbcType=INTEGER},
+               </if>
+            </if>
+            <if test="manufacturer != null" >
+                Manufacturer = #{manufacturer,jdbcType=VARCHAR},
+            </if>
+            <if test="commodityPrice != null" >
+                commodityPrice = #{commodityPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="fcPrice != null" >
+                fcPrice = #{fcPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="commodityAmount != null" >
+                commodityAmount = #{commodityAmount,jdbcType=INTEGER},
+            </if>
+            <if test="commodityLeaveNum != null" >
+                commodityLeaveNum = #{commodityLeaveNum,jdbcType=INTEGER},
+            </if>
+            <if test="regTime != null" >
+                RegTime = #{regTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="commodityDepict != null" >
+                commodityDepict = #{commodityDepict,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="image != null" >
+                image = #{image,jdbcType=LONGVARBINARY},
+            </if>
+        </set>
+        WHERE commodityID = #{commodityId,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByName" parameterType="Commodity">
+        UPDATE commodity
+        <set>
+            <if test="commodityName != null" >
+                commodityName = #{commodityName,jdbcType=VARCHAR},
+            </if>
+            <if test="commodityClass != null" >
+                <if test="commodityClass.commodityClassId != null">
+                    commodityClass = #{commodityClass.commodityClassId,jdbcType=INTEGER},
+                </if>
+            </if>
+            <if test="manufacturer != null" >
+                Manufacturer = #{manufacturer,jdbcType=VARCHAR},
+            </if>
+            <if test="commodityPrice != null" >
+                commodityPrice = #{commodityPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="fcPrice != null" >
+                fcPrice = #{fcPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="commodityAmount != null" >
+                commodityAmount = #{commodityAmount,jdbcType=INTEGER},
+            </if>
+            <if test="commodityLeaveNum != null" >
+                commodityLeaveNum = #{commodityLeaveNum,jdbcType=INTEGER},
+            </if>
+            <if test="regTime != null" >
+                RegTime = #{regTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="commodityDepict != null" >
+                commodityDepict = #{commodityDepict,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="image != null" >
+                image = #{image,jdbcType=LONGVARBINARY},
+            </if>
+        </set>
+        WHERE commodityName = #{commodityName,jdbcType=INTEGER}
+    </update>
+
+
+</mapper>

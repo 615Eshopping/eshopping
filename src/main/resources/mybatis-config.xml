@@ -13,5 +13,6 @@
         <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
 
+    <!--分页插件配置-->
 
 </configuration>

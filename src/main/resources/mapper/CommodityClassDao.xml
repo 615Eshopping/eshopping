@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper>
+    <resultMap id="CommodityClassResultMap" type="com.eshopping.entity.CommodityClass" >
+        <id column="commodityClassID" property="commodityClassId" jdbcType="INTEGER" />
+        <result column="commodityClassName" property="commodityClassName" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        commodityClassID, commodityClassName
+    </sql>
+
+    <insert id="save" parameterType="CommdityClass">
+        insert into commodityclass
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="commodityClassId != null" >
+                commodityClassID,
+            </if>
+            <if test="commodityClassName != null" >
+                commodityClassName,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="commodityClassId != null" >
+                #{commodityClassId,jdbcType=INTEGER},
+            </if>
+            <if test="commodityClassName != null" >
+                #{commodityClassName,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    
+    <select id="findById" parameterType="java.lang.Integer" resultMap="CommodityClassResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from commodityclass
+        where commodityClassID = #{commodityClassId,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteById" parameterType="java.lang.Integer" >
+        delete from commodityclass
+        where commodityClassID = #{commodityClassId,jdbcType=INTEGER}
+    </delete>
+
+    <update id="updateById" parameterType="com.eshopping.entity.CommodityClass" >
+        update commodityclass
+        <set >
+            <if test="commodityClassName != null" >
+                commodityClassName = #{commodityClassName,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where commodityClassID = #{commodityClassId,jdbcType=INTEGER}
+    </update>
+
+</mapper>

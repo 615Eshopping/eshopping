@@ -12,11 +12,17 @@ import java.util.List;
 public interface CommodityClassDao {
     int save(CommodityClass commodityclass);//保存商品种类
 
-    //List<CommodityClass> findAll(Page page);//分页查询所有的商品种类
+    CommodityClass findById(Integer commodityClassId);
+
+    int deleteById(Integer commodityClassId);
+
+    int updateById(CommodityClass commodityClass);
+
+    List<CommodityClass> findAll(Page page);//分页查询所有的商品种类
 
     int findAllCount();//查询所有记录数
 
     List<CommodityClass> findAll();//查询所有的商品种类
 
-    CommodityClass findById(int commodityClassID);
+
 }

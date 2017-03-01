@@ -44,7 +44,4 @@ public interface UserDao {
      * @return
      */
     List<User> getALL();
-
-
-
 }

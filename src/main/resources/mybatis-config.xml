@@ -14,5 +14,11 @@
     </settings>
 
     <!--分页插件配置-->
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <property name="helperDialect" value="mysql"/>
+
+        </plugin>
+    </plugins>
 
 </configuration>

@@ -25,13 +25,13 @@ public interface CommodityDao {
 
     //int updateByCommodityName(Commodity commodity);//根据商品名称更新商品 名称可能重复 没有意义
 
-    List<Commodity> findAll(Page page);//分页查询所有的商品
+    List<Commodity> findAll();//分页查询所有的商品
+
+    List<Commodity> findByClass(CommodityClass commodityClass);//分页按照商品类别查询
 
     int findAllCount();//查询所有记录数
 
     List<Commodity> findByTime(Long time);//按时间倒序查找
-
-    List<Commodity> findByClass(CommodityClass commodityClass,Page page);//分页按照商品类别查询
 
     int findAllCount(CommodityClass commodityClass);//查询分类记录数
 

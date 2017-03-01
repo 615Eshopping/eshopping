@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper>
+<mapper namespace="com.eshopping.dao.CommodityClassDao">
     <resultMap id="CommodityClassResultMap" type="com.eshopping.entity.CommodityClass" >
         <id column="commodityClassID" property="commodityClassId" jdbcType="INTEGER" />
         <result column="commodityClassName" property="commodityClassName" jdbcType="VARCHAR" />
@@ -11,7 +11,7 @@
         commodityClassID, commodityClassName
     </sql>
 
-    <insert id="save" parameterType="CommdityClass">
+    <insert id="save" parameterType="CommodityClass">
         insert into commodityclass
         <trim prefix="(" suffix=")" suffixOverrides="," >
             <if test="commodityClassId != null" >
@@ -52,5 +52,11 @@
         </set>
         where commodityClassID = #{commodityClassId,jdbcType=INTEGER}
     </update>
+
+    <select id="findAll" resultMap="CommodityClassResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM commodityClass
+    </select>
 
 </mapper>

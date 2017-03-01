@@ -45,14 +45,14 @@
 
     <delete id="deleteById" parameterType="Integer">
         DELETE FROM commodity
-        WHERE commodityId = #{commodityId}
+        WHERE commodityID = #{commodityId}
     </delete>
 
     <select id="findById" parameterType="Integer" resultMap="CommodityResultMap">
         select
         <include refid="Base_Column_List" />
         from commodity
-        where commodityId = #{commodityId,jdbcType=INTEGER}
+        where commodityID = #{commodityId,jdbcType=INTEGER}
     </select>
 
     <update id="updateById" parameterType="Commodity">
@@ -91,7 +91,7 @@
                 image = #{image,jdbcType=LONGVARBINARY},
             </if>
         </set>
-        WHERE commodityID = #{commodityId,jdbcType=INTEGER} AND commodityClass = #{commodityClass.commodityClassId,jdbcType=INTEGER}
+        WHERE commodityID = #{commodityId,jdbcType=INTEGER}
     </update>
 
 <!--    <update id="updateByName" parameterType="Commodity">
@@ -132,6 +132,20 @@
         </set>
         WHERE commodityName = #{commodityName,jdbcType=INTEGER}
     </update>-->
+
+    <select id="findAll" resultMap="CommodityResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM commodity
+    </select>
+    
+    <select id="findByClass" parameterType="com.eshopping.entity.CommodityClass" resultMap="CommodityResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM commodity
+        WHERE commodityClass = #{commodityClassId,jdbcType=INTEGER}
+    </select>
+
 
 
 </mapper>

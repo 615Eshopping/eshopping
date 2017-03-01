@@ -2,11 +2,14 @@ package com.eshopping.dao;
 
 import com.eshopping.entity.Commodity;
 import com.eshopping.entity.CommodityClass;
+import com.github.pagehelper.PageHelper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -34,10 +37,6 @@ public class CommodityDaoTest {
         commodityDao.deleteById(25);
     }
 
-    @Test
-    public void deleteByCommodityName(){
-        commodityDao.deleteByCommodityName("test3");
-    }
 
     @Test
     public void findById() throws Exception {
@@ -54,14 +53,33 @@ public class CommodityDaoTest {
         commodity.setCommodityClass(commodityClass);
         commodityDao.save(commodity);
 
-        commodity = commodityDao.findById(33);
+        commodity = commodityDao.findById(20);
         commodity.setCommodityName("test3");
+        commodity.setCommodityClass(commodityClass);
         commodityDao.updateById(commodity);
 
     }
 
     @Test
-    public void updateByCommodityName(){
+    public void findAll(){
+        PageHelper.startPage(1,4);
+        List<Commodity> list = commodityDao.findAll();
 
+        for(Commodity commodity:list){
+            System.out.println(commodity);
+        }
+
+    }
+
+    @Test
+    public void findByClass(){
+        PageHelper.startPage(1,2);
+        CommodityClass commodityClass = new CommodityClass();
+        commodityClass.setCommodityClassId(17);
+        List<Commodity> list = commodityDao.findByClass(commodityClass);
+
+        for(Commodity commodity:list){
+            System.out.println(commodity);
+        }
     }
 }

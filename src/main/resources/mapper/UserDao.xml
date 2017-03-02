@@ -17,10 +17,22 @@
         <result column="regIpAddress" property="regIpAddress" jdbcType="VARCHAR" />
     </resultMap>
 
+    <sql id="Base_Column_List" >
+        userID, username, password, name, sex, address, phone, post, email, regTime, regIpAddress
+    </sql>
+
     <select id="getUserById" parameterType="Integer" resultMap="userResultMap">
-    SELECT *
+    SELECT
+        <include refid="Base_Column_List" />
     FROM users
     WHERE  userId = #{userId}
+    </select>
+
+    <select id="getUserByName" parameterType="String" resultMap="userResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM users
+        WHERE  userName= #{userName}
     </select>
 
     <insert id="addUser" parameterType="User" >

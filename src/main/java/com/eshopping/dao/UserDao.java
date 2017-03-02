@@ -19,6 +19,13 @@ public interface UserDao {
 
     /**
      *
+     * @param userName
+     * @return
+     */
+    User getUserByName(String userName);
+
+    /**
+     *
      * @param user
      * @return 影响的行数
      */

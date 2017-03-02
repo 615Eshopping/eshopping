@@ -1,7 +1,7 @@
 package com.eshopping.dao;
 
 import com.eshopping.entity.CommodityClass;
-import com.eshopping.util.Page;
+import org.springframework.stereotype.Repository;
 
 
 import java.util.List;
@@ -9,6 +9,7 @@ import java.util.List;
 /**
  * Created by AnKh on 2017/2/20.
  */
+@Repository
 public interface CommodityClassDao {
     int save(CommodityClass commodityclass);//保存商品种类
 

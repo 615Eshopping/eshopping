@@ -3,7 +3,6 @@ package com.eshopping.dao;
 import com.eshopping.entity.Commodity;
 import com.eshopping.entity.CommodityClass;
 
-import com.eshopping.util.Page;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

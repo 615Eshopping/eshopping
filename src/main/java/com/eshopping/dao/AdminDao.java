@@ -1,12 +1,14 @@
 package com.eshopping.dao;
 
 import com.eshopping.entity.Admin;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
  * Created by AnKh on 2017/2/27.
  */
+@Repository
 public interface AdminDao {
     /**
      *

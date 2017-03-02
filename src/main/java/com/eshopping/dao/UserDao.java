@@ -33,7 +33,7 @@ public interface UserDao {
 
     /**
      *
-     * @param user
+     * @param userId
      * @return 影响的行数
      */
     int deleteUserById(Integer userId);

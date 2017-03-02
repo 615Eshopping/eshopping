@@ -5,6 +5,7 @@ import com.eshopping.entity.User;
 import com.eshopping.exception.ResourceConflictException;
 import com.eshopping.exception.ResourceNotFoundException;
 import com.eshopping.service.UserService;
+import com.github.pagehelper.PageHelper;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,7 +30,7 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-
+//// TODO: 2017/3/2 逻辑需要补充
     public void deleteUserById(Integer userId) {
         if(userDao.getUserById(userId) == null){
             throw new ResourceNotFoundException("用户不存在");
@@ -47,7 +48,8 @@ public class UserServiceImpl implements UserService {
     }
 
     public List<User> findAll(int pageNum,int rows) {
-
-        return null;
+        PageHelper.startPage(pageNum,rows);
+        List<User> userList = userDao.getALL();
+        return userList;
     }
 }

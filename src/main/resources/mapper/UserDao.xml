@@ -87,4 +87,10 @@
         </set>
         where userId = #{userId,jdbcType=INTEGER}
     </update>
+
+    <select id="getALL" resultMap="userResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM users
+    </select>
 </mapper>

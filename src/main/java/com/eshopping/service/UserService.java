@@ -8,6 +8,7 @@ import java.util.List;
  * Created by AnKh on 2017/3/2.
  */
 public interface UserService {
+
     void addUser(User user);
 
     void deleteUserById(Integer userId);

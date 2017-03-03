@@ -28,10 +28,12 @@ public interface CommodityDao {
 
     List<Commodity> findByClass(CommodityClass commodityClass);//分页按照商品类别查询
 
-    int findAllCount();//查询所有记录数
+    List<Commodity> findByCommodityName(String commodityName);//分页按照商品名查找
 
-    List<Commodity> findByTime(Long time);//按时间倒序查找
+    //int findAllCount();//查询所有记录数
 
-    int findAllCount(CommodityClass commodityClass);//查询分类记录数
+    //List<Commodity> findByTime(Long time);//按时间倒序查找
+
+    //int findAllCount(CommodityClass commodityClass);//查询分类记录数
 
 }

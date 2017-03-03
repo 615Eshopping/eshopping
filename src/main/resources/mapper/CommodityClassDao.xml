@@ -38,6 +38,13 @@
         where commodityClassID = #{commodityClassId,jdbcType=INTEGER}
     </select>
 
+    <select id="findByCommodityClassName" parameterType="String" resultMap="CommodityClassResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from commodityclass
+        where commodityClassName = #{commodityClassName,jdbcType=INTEGER}
+    </select>
+
     <delete id="deleteById" parameterType="java.lang.Integer" >
         delete from commodityclass
         where commodityClassID = #{commodityClassId,jdbcType=INTEGER}

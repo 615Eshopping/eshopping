@@ -146,6 +146,13 @@
         WHERE commodityClass = #{commodityClassId,jdbcType=INTEGER}
     </select>
 
+    <select id="findByClassName" parameterType="String" resultMap="CommodityResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM commodity
+        WHERE commodityName = #{commodityName,jdbcType=INTEGER}
+    </select>
+
 
 
 </mapper>

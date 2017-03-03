@@ -15,6 +15,8 @@ public interface CommodityClassDao {
 
     CommodityClass findById(Integer commodityClassId);//根据商品种类id查找
 
+    CommodityClass findByCommodityClassName(String commodityClassName);//根据商品种类的名称查找
+
     int deleteById(Integer commodityClassId);//根据商品种类id删除
 
     int updateById(CommodityClass commodityClass);//根据商品种类ID更新

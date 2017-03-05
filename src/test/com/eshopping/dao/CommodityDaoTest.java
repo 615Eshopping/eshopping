@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -28,6 +29,8 @@ public class CommodityDaoTest {
         CommodityClass commodityClass = new CommodityClass();
         commodityClass.setCommodityClassId(18);
         commodity.setCommodityClass(commodityClass);
+        Date nowDate = new Date();
+        commodity.setRegTime(nowDate);
         int i = commodityDao.save(commodity);
         System.out.println(i);
     }

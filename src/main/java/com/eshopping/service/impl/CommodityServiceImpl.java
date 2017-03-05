@@ -2,6 +2,7 @@ package com.eshopping.service.impl;
 
 import com.eshopping.dao.CommodityClassDao;
 import com.eshopping.dao.CommodityDao;
+import com.eshopping.dto.EUDataGridResult;
 import com.eshopping.entity.Commodity;
 import com.eshopping.enums.ExceptionEnums;
 import com.eshopping.exception.RequestParamException;
@@ -88,10 +89,14 @@ public class CommodityServiceImpl implements CommodityService {
         }
     }
 
-    public List<Commodity> findAll(int pageNums, int rows) {
+    public EUDataGridResult findAll(int pageNums, int rows) {
         PageHelper.startPage(pageNums,rows);
         List<Commodity> commodityList = commodityDao.findAll();
-        return commodityList;
+        EUDataGridResult result = new EUDataGridResult();
+        result.setRows(commodityList);
+        PageInfo<Commodity> pageInfo = new PageInfo<Commodity>(commodityList);
+        result.setTotal(pageInfo.getTotal());
+        return result;
     }
 
     public Commodity findByCommodityId(Integer commodityId) {

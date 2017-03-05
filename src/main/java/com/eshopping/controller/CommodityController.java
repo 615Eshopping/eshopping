@@ -1,5 +1,6 @@
 package com.eshopping.controller;
 
+import com.eshopping.dto.EUDataGridResult;
 import com.eshopping.entity.Commodity;
 import com.eshopping.enums.ExceptionEnums;
 import com.eshopping.exception.ResourceNotFoundException;
@@ -78,14 +79,10 @@ public class CommodityController {
         }
     }
 
-    @RequestMapping(value = "/list" ,method = RequestMethod.POST)
+    @RequestMapping(value = "/list" ,method = RequestMethod.GET)
     @ResponseBody
-    public ResultInfo findByPage(@RequestBody Page page){
-        List<Commodity> commodity = commodityService.findAll(page.getPageNums() ,page.getRows());
-        //取记录总条数
-        PageInfo<Commodity> pageInfo = new PageInfo<Commodity>(commodity);
-        return new ResultInfo(true,commodity,pageInfo.getTotal());
+    public EUDataGridResult findByPage(Integer pageNums,Integer rows){
+        EUDataGridResult result = commodityService.findAll(pageNums,rows);
+        return result;
     }
-
-
 }

@@ -1,16 +1,23 @@
 package com.eshopping.util;
 
-/**
+/**这个应该在dto中
  * Created by AnKh on 2017/3/3.
  */
 public class ResultInfo {
     private boolean success;
     private Object data;
     private String message;
+    private long total;
 
     public ResultInfo(boolean success, Object data) {
         this.success = success;
         this.data = data;
+    }
+
+    public ResultInfo(boolean success, Object data, long total) {
+        this.success = success;
+        this.data = data;
+        this.total = total;
     }
 
     public ResultInfo(boolean success, String message) {
@@ -40,5 +47,13 @@ public class ResultInfo {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public long getTotal() {
+        return total;
+    }
+
+    public void setTotal(long total) {
+        this.total = total;
     }
 }

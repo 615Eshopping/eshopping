@@ -2,6 +2,7 @@ package com.eshopping.service.impl;
 
 import com.eshopping.dao.CommodityClassDao;
 import com.eshopping.entity.CommodityClass;
+import com.eshopping.enums.ExceptionEnums;
 import com.eshopping.exception.ResourceConflictException;
 import com.eshopping.exception.ResourceNotFoundException;
 import com.eshopping.exception.ResourceOperationFailException;
@@ -24,38 +25,52 @@ public class CommodityClassServiceImpl implements CommodityClassService {
     CommodityClassDao commodityClassDao;
 
     public void save(CommodityClass commodityClass) {
+        if(commodityClass.getCommodityClassName() == null){
+            throw new ResourceNotFoundException(ExceptionEnums.PARAM_LACK.getStateInfo());
+        }
         if(commodityClassDao.findById(commodityClass.getCommodityClassId()) != null){
-            throw new ResourceConflictException("商品类别已经存在");
+            throw new ResourceConflictException(ExceptionEnums.COMMODITYCLASS_FOUND.getStateInfo());
         }
         int saveCount = commodityClassDao.save(commodityClass);
         if(saveCount <= 0) {
-            throw new ResourceOperationFailException("save fail");
+            throw new ResourceOperationFailException(ExceptionEnums.SAVE_FAIL.getStateInfo());
         }
 
     }
 
     public void deleteByCommodityClassId(Integer commodityClassId) {
         if(commodityClassDao.findById(commodityClassId) == null){
-            throw new ResourceNotFoundException("商品类别不存在");
+            throw new ResourceNotFoundException(ExceptionEnums.COMMODITYCLASS_NOT_FOUND.getStateInfo());
         }else{
             int deleteCount = commodityClassDao.deleteById(commodityClassId);
             if(deleteCount <= 0){
-                throw new ResourceOperationFailException("删除失败");
+                throw new ResourceOperationFailException(ExceptionEnums.DELETE_FAIL.getStateInfo());
             }
         }
     }
 
     public void updateByCommodityClassId(CommodityClass commodityClass) {
         if(commodityClassDao.findById(commodityClass.getCommodityClassId()) == null){
-            throw new ResourceNotFoundException("商品类别不存在");
+            throw new ResourceNotFoundException(ExceptionEnums.COMMODITYCLASS_NOT_FOUND.getStateInfo());
         }else {
             int  updateCount = commodityClassDao.updateById(commodityClass);
             if(updateCount <= 0){
-                throw new ResourceOperationFailException("更新失败");
+                throw new ResourceOperationFailException(ExceptionEnums.UPDATE_FAIL.getStateInfo());
             }
         }
     }
 
+    public CommodityClass findByCommodityClassId(Integer commodityClassId) {
+        CommodityClass commodityClass = commodityClassDao.findById(commodityClassId);
+
+        if (commodityClass != null){
+            return commodityClass;
+        }else{
+            throw new ResourceNotFoundException(ExceptionEnums.COMMODITYCLASS_NOT_FOUND.getStateInfo());
+        }
+
+    }
+//// TODO: 2017/3/5 需要完善逻辑
     public List<CommodityClass> findAll(int pageNums, int rows) {
         PageHelper.startPage(pageNums,rows);
         List<CommodityClass> commodityClassList = commodityClassDao.findAll();

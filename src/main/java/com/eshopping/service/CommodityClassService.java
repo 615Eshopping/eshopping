@@ -17,6 +17,8 @@ public interface CommodityClassService {
 
     void updateByCommodityClassId(CommodityClass commodityClass);
 
+    CommodityClass findByCommodityClassId(Integer CommodityClassId);
+
     List<CommodityClass> findAll(int pageNums,int rows);
 
 }

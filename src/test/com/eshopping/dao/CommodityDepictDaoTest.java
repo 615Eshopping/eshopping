@@ -21,7 +21,7 @@ public class CommodityDepictDaoTest {
     public void addDepict() throws Exception {
         CommodityDepict commodityDepict = new CommodityDepict();
         commodityDepict.setCommodityDepict("test");
-        commodityDepict.setCommodityId(11);
+        commodityDepict.setCommodityId(1);
         commodityDepictDao.addDepict(commodityDepict);
     }
 

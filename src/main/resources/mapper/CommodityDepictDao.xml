@@ -16,7 +16,7 @@
 
     <insert id="addDepict" parameterType="com.eshopping.entity.CommodityDepict" >
         insert into commoditydepict (commodityID, commodityDepict)
-        values (#{commodityid,jdbcType=INTEGER}, #{commoditydepict,jdbcType=LONGVARCHAR})
+        values (#{commodityId,jdbcType=INTEGER}, #{commodityDepict,jdbcType=LONGVARCHAR})
     </insert>
 
     <update id="updateDepict" parameterType="com.eshopping.entity.CommodityDepict">
@@ -32,7 +32,7 @@
 
     <select id="getDepict" parameterType="Integer" resultMap="ResultMapWithBLOBs">
         SELECT
-        <include refid="Base_Column_List" />
+        <include refid="Blob_Column_List" />
         FROM commodityDepict
         WHERE commodityId = #{commodotyId,jdbcType=INTEGER}
     </select>

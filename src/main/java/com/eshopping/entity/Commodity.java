@@ -12,13 +12,11 @@ public class Commodity {
     private String commodityName;			//商品名称
     private CommodityClass commodityClass;	//商品种类
     private String manufacturer;			//生产厂家
-    private String commodityDepict;			//商品描述
     private BigDecimal commodityPrice;			//商品价格
     private BigDecimal fcPrice;					//帆成网价格
     private Integer commodityAmount;		//商品总数量
     private Integer commodityLeaveNum;		//商品剩余数量
     private Date regTime;					//商品上架时间
-    private byte[] image;						//商品图片
 
     public Integer getCommodityId() {
         return commodityId;
@@ -51,15 +49,6 @@ public class Commodity {
     public void setManufacturer(String manufacturer) {
         this.manufacturer = manufacturer;
     }
-
-    public String getCommodityDepict() {
-        return commodityDepict;
-    }
-
-    public void setCommodityDepict(String commodityDepict) {
-        this.commodityDepict = commodityDepict;
-    }
-
 
     public BigDecimal getCommodityPrice() {
         return commodityPrice;
@@ -101,13 +90,6 @@ public class Commodity {
         this.regTime = regTime;
     }
 
-    public byte[] getImage() {
-        return image;
-    }
-
-    public void setImage(byte[] image) {
-        this.image = image;
-    }
 
     @Override
     public String toString() {
@@ -116,7 +98,6 @@ public class Commodity {
                 ", commodityClass=" + commodityClass +
                 ", commodityName='" + commodityName + '\'' +
                 ", manufacturer='" + manufacturer + '\'' +
-                ", commodityDepict='" + commodityDepict + '\'' +
                 ", commodityPrice=" + commodityPrice +
                 ", fcPrice=" + fcPrice +
                 ", commodityAmount=" + commodityAmount +

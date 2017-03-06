@@ -8,13 +8,11 @@
         <id column="commodityID" property="commodityId" jdbcType="INTEGER" />
         <result column="commodityName" property="commodityName" jdbcType="VARCHAR" />
         <result column="Manufacturer" property="manufacturer" jdbcType="VARCHAR" />
-        <result column="commodityDepict" property="commodityDepict" jdbcType="LONGVARCHAR" />
         <result column="commodityPrice" property="commodityPrice" jdbcType="DECIMAL" />
         <result column="fcPrice" property="fcPrice" jdbcType="DECIMAL" />
         <result column="commodityAmount" property="commodityAmount" jdbcType="INTEGER" />
         <result column="commodityLeaveNum" property="commodityLeaveNum" jdbcType="INTEGER" />
         <result column="RegTime" property="regTime" jdbcType="TIMESTAMP" />
-        <result column="image" property="image" jdbcType="LONGVARBINARY" />
         <association column="commodityClass" property="commodityClass" select="getCommodityClass"/>
     </resultMap>
     <!--有外键时候的增删查改-->
@@ -29,18 +27,16 @@
 
     <sql id="Base_Column_List" >
         commodityID, commodityName, commodityClass, Manufacturer, commodityPrice, fcPrice,
-        commodityAmount, commodityLeaveNum, RegTime,commodityDepict, image
+        commodityAmount, commodityLeaveNum, RegTime
     </sql>
 
     <insert id="save" parameterType="Commodity">
         insert into commodity (commodityID, commodityName, commodityClass,
                                 Manufacturer, commodityPrice, fcPrice,
-                                commodityAmount, commodityLeaveNum, RegTime,
-                                commodityDepict, image)
+                                commodityAmount, commodityLeaveNum, RegTime)
         values (#{commodityId,jdbcType=INTEGER}, #{commodityName,jdbcType=VARCHAR}, #{commodityClass.commodityClassId,jdbcType=INTEGER},
                  #{manufacturer,jdbcType=VARCHAR}, #{commodityPrice,jdbcType=DECIMAL}, #{fcPrice,jdbcType=DECIMAL},
-                 #{commodityAmount,jdbcType=INTEGER}, #{commodityLeaveNum,jdbcType=INTEGER}, #{regTime,jdbcType=TIMESTAMP},
-                 #{commodityDepict,jdbcType=LONGVARCHAR}, #{image,jdbcType=LONGVARBINARY})
+                 #{commodityAmount,jdbcType=INTEGER}, #{commodityLeaveNum,jdbcType=INTEGER}, #{regTime,jdbcType=TIMESTAMP}）
     </insert>
 
     <delete id="deleteById" parameterType="Integer">
@@ -83,12 +79,6 @@
             </if>
             <if test="regTime != null" >
                 RegTime = #{regTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="commodityDepict != null" >
-                commodityDepict = #{commodityDepict,jdbcType=LONGVARCHAR},
-            </if>
-            <if test="image != null" >
-                image = #{image,jdbcType=LONGVARBINARY},
             </if>
         </set>
         WHERE commodityID = #{commodityId,jdbcType=INTEGER}

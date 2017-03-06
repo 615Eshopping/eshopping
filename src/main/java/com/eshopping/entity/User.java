@@ -17,7 +17,6 @@ public class User {
     private String post;
     private String email;
     private Date regTime;
-    private String regIpAddress;
 
     public Integer getUserId() {
         return userId;
@@ -99,15 +98,6 @@ public class User {
         this.regTime = regTime;
     }
 
-    public String getRegIpAddress() {
-        return regIpAddress;
-    }
-
-    public void setRegIpAddress(String regIpAddress) {
-        this.regIpAddress = regIpAddress;
-    }
-
-
     @Override
     public String toString() {
         return "User{" +
@@ -121,7 +111,6 @@ public class User {
                 ", post='" + post + '\'' +
                 ", email='" + email + '\'' +
                 ", regTime=" + regTime +
-                ", regIpAddress='" + regIpAddress + '\'' +
                 '}';
     }
 }

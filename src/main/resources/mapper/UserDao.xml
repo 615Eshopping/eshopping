@@ -14,11 +14,10 @@
         <result column="post" property="post" jdbcType="VARCHAR" />
         <result column="email" property="email" jdbcType="VARCHAR" />
         <result column="regTime" property="regTime" jdbcType="TIMESTAMP" />
-        <result column="regIpAddress" property="regIpAddress" jdbcType="VARCHAR" />
     </resultMap>
 
     <sql id="Base_Column_List" >
-        userID, username, password, name, sex, address, phone, post, email, regTime, regIpAddress
+        userID, username, password, name, sex, address, phone, post, email, regTime
     </sql>
 
     <select id="getUserById" parameterType="Integer" resultMap="userResultMap">
@@ -38,12 +37,10 @@
     <insert id="addUser" parameterType="User" >
     insert into users (userID, username, password,
       name, sex, address, phone,
-      post, email, regTime,
-      regIpAddress)
+      post, email, regTime)
     values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
       #{name,jdbcType=VARCHAR}, #{sex,jdbcType=BIT}, #{address,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
-      #{post,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{regTime,jdbcType=TIMESTAMP},
-      #{regIpAddress,jdbcType=VARCHAR})
+      #{post,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{regTime,jdbcType=TIMESTAMP})
   </insert>
 
     <delete id="deleteUserById" parameterType="Integer">
@@ -80,9 +77,6 @@
             </if>
             <if test="regTime != null" >
                 regTime = #{regTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="regIpAddress != null" >
-                regIpAddress = #{regIpAddress,jdbcType=VARCHAR},
             </if>
         </set>
         where userId = #{userId,jdbcType=INTEGER}

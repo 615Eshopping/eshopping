@@ -2,7 +2,7 @@ package com.eshopping.dto;
 
 import java.util.List;
 
-/**EasyUI标准返回格式
+/**EasyUIGrid框架标准返回格式
  * Created by AnKh on 2017/3/5.
  */
 public class EUDataGridResult {

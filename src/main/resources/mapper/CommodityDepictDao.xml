@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.eshopping.dao.CommodityDepictDao">
+    <resultMap id="BaseResultMap" type="com.eshopping.entity.CommodityDepict" >
+        <result column="commodityID" property="commodityId" jdbcType="INTEGER" />
+    </resultMap>
+    <resultMap id="ResultMapWithBLOBs" type="com.eshopping.entity.CommodityDepict" extends="BaseResultMap" >
+        <result column="commodityDepict" property="commodityDepict" jdbcType="LONGVARCHAR" />
+    </resultMap>
+
+    <sql id="Blob_Column_List" >
+        commodityDepict
+    </sql>
+
+    <insert id="addDepict" parameterType="com.eshopping.entity.CommodityDepict" >
+        insert into commoditydepict (commodityID, commodityDepict)
+        values (#{commodityid,jdbcType=INTEGER}, #{commoditydepict,jdbcType=LONGVARCHAR})
+    </insert>
+
+    <update id="updateDepict" parameterType="com.eshopping.entity.CommodityDepict">
+        UPDATE commoditydepict
+        SET commodityPepict = #{commoditydepict,jdbcType=LONGVARCHAR}
+        WHERE commodityId = #{commodotyId,jdbcType=INTEGER}
+    </update>
+
+    <delete id="deleteDepict" parameterType="Integer">
+        DELETE FROM commoditydepict
+        WHERE commodityId = #{commodotyId,jdbcType=INTEGER}
+    </delete>
+
+    <select id="getDepict" parameterType="Integer" resultMap="ResultMapWithBLOBs">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM commodityDepict
+        WHERE commodityId = #{commodotyId,jdbcType=INTEGER}
+    </select>
+
+
+</mapper>

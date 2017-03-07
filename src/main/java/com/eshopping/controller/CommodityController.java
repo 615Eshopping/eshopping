@@ -43,7 +43,7 @@ public class CommodityController {
     @RequestMapping(value = "/{commodityId}/update",method = RequestMethod.PUT,produces = "application/json;charset=utf-8")
     @ResponseBody
     public ResultInfo updateCommodity(@PathVariable("commodityId") Integer commodityId, @RequestBody Commodity commodity){
-        ResultInfo resultInfo = null;
+        ResultInfo resultInfo;
         commodity.setCommodityId(commodityId);
         try {
             commodityService.updateById(commodity);

@@ -8,10 +8,10 @@ import com.eshopping.entity.CommodityImage;
 public interface CommodityImageDao {
     int addImage(CommodityImage commodityImage);
 
-    int updateDepict(CommodityImage commodityImage);
+    int updateImage(CommodityImage commodityImage);
 
-    int deleteDepict(Integer commodityId);
+    int deleteImage(Integer commodityId);
 
-    CommodityImage getDepict(Integer commodityId);
+    CommodityImage getImage(Integer commodityId);
 
 }

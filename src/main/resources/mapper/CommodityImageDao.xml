@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.eshopping.dao.CommodityImageDao">
         <resultMap id="BaseResultMap" type="com.eshopping.entity.CommodityImage" >
-            <result column="commodityID" property="commodityid" jdbcType="INTEGER" />
+            <result column="commodityID" property="commodityId" jdbcType="INTEGER" />
         </resultMap>
         <resultMap id="ResultMapWithBLOBs" type="com.eshopping.entity.CommodityImage" extends="BaseResultMap" >
             <result column="image" property="image" jdbcType="LONGVARBINARY" />
@@ -12,28 +12,28 @@
         <sql id="Blob_Column_List" >
             image
         </sql>
-        <insert id="insert" parameterType="com.eshopping.entity.CommodityImage" >
+        <insert id="addImage" parameterType="com.eshopping.entity.CommodityImage" >
             insert into commodityimage (commodityID, image)
-            values (#{commodityid,jdbcType=INTEGER}, #{image,jdbcType=LONGVARBINARY})
+            values (#{commodityId,jdbcType=INTEGER}, #{image,jdbcType=LONGVARBINARY})
         </insert>
 
-        <insert id="insertSelective" parameterType="com.eshopping.entity.CommodityImage" >
-            insert into commodityimage
-            <trim prefix="(" suffix=")" suffixOverrides="," >
-                <if test="commodityid != null" >
-                    commodityID,
-                </if>
-                <if test="image != null" >
-                    image,
-                </if>
-            </trim>
-            <trim prefix="values (" suffix=")" suffixOverrides="," >
-                <if test="commodityid != null" >
-                    #{commodityid,jdbcType=INTEGER},
-                </if>
-                <if test="image != null" >
-                    #{image,jdbcType=LONGVARBINARY},
-                </if>
-            </trim>
-        </insert>
+        <update id="updateImage" parameterType="com.eshopping.entity.CommodityDepict">
+          UPDATE commoditydepict
+          SET commodityPepict = #{commodityDepict,jdbcType=LONGVARCHAR}
+          WHERE commodityId = #{commodotyId,jdbcType=INTEGER}
+        </update>
+
+        <delete id="deleteImage" parameterType="Integer">
+          DELETE FROM commoditydepict
+          WHERE commodityId = #{commodotyId,jdbcType=INTEGER}
+        </delete>
+
+        <select id="getImage" parameterType="Integer" resultMap="ResultMapWithBLOBs">
+          SELECT
+          <include refid="Blob_Column_List" />
+          FROM commodityDepict
+          WHERE commodityId = #{commodotyId,jdbcType=INTEGER}
+        </select>
+
+
 </mapper>

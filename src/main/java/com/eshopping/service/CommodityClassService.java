@@ -1,5 +1,6 @@
 package com.eshopping.service;
 
+import com.eshopping.dto.EUDataGridResult;
 import com.eshopping.entity.CommodityClass;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,6 @@ public interface CommodityClassService {
 
     CommodityClass findByCommodityClassId(Integer CommodityClassId);
 
-    List<CommodityClass> findAll(int pageNums,int rows);
+    EUDataGridResult findAll(int pageNums, int rows);
 
 }

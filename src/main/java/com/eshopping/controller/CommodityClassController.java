@@ -1,5 +1,6 @@
 package com.eshopping.controller;
 
+import com.eshopping.dto.EUDataGridResult;
 import com.eshopping.entity.CommodityClass;
 import com.eshopping.enums.ExceptionEnums;
 import com.eshopping.service.CommodityClassService;
@@ -77,12 +78,12 @@ public class CommodityClassController {
         }
     }
 
-    @RequestMapping(value = "/list" , method = RequestMethod.POST)
+
+    @RequestMapping(value = "/list" ,method = RequestMethod.GET)
     @ResponseBody
-    public ResultInfo findByPage(@RequestBody Page page){
-        List<CommodityClass> commodityClassList = commodityClassService.findAll(page.getPageNums(),page.getRows());
-        PageInfo<CommodityClass> pageInfo = new PageInfo<CommodityClass>(commodityClassList);
-        return new ResultInfo(true,commodityClassList,pageInfo.getTotal());
+    public EUDataGridResult findByPage(Integer pageNums, Integer rows){
+        EUDataGridResult result = commodityClassService.findAll(pageNums,rows);
+        return result;
     }
 
 }

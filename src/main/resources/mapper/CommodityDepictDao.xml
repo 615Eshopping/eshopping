@@ -21,7 +21,7 @@
 
     <update id="updateDepict" parameterType="com.eshopping.entity.CommodityDepict">
         UPDATE commoditydepict
-        SET commodityPepict = #{commoditydepict,jdbcType=LONGVARCHAR}
+        SET commodityPepict = #{commodityDepict,jdbcType=LONGVARCHAR}
         WHERE commodityId = #{commodotyId,jdbcType=INTEGER}
     </update>
 

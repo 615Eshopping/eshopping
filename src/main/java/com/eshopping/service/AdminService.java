@@ -13,6 +13,6 @@ public interface AdminService {
     void deleteAdminById(Integer AdminId);
 
     void updateAdminById(Integer AdminId);
-
+//// TODO: 2017/3/7 修改接口
     List<Admin> findAll();
 }

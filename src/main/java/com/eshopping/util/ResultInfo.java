@@ -3,6 +3,7 @@ package com.eshopping.util;
 /**这个应该在dto中
  * Created by AnKh on 2017/3/3.
  */
+//// TODO: 2017/3/7 需要改造
 public class ResultInfo {
     private boolean success;
     private Object data;

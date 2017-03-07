@@ -1,6 +1,8 @@
 package com.eshopping.service.impl;
 
 import com.eshopping.dao.CommodityClassDao;
+import com.eshopping.dto.EUDataGridResult;
+import com.eshopping.entity.Commodity;
 import com.eshopping.entity.CommodityClass;
 import com.eshopping.enums.ExceptionEnums;
 import com.eshopping.exception.ResourceConflictException;
@@ -8,6 +10,7 @@ import com.eshopping.exception.ResourceNotFoundException;
 import com.eshopping.exception.ResourceOperationFailException;
 import com.eshopping.service.CommodityClassService;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -70,10 +73,14 @@ public class CommodityClassServiceImpl implements CommodityClassService {
         }
 
     }
-//// TODO: 2017/3/5 需要完善逻辑
-    public List<CommodityClass> findAll(int pageNums, int rows) {
+
+    public EUDataGridResult findAll(int pageNums, int rows) {
         PageHelper.startPage(pageNums,rows);
-        List<CommodityClass> commodityClassList = commodityClassDao.findAll();
-        return commodityClassList;
+        List<CommodityClass> commodityList = commodityClassDao.findAll();
+        EUDataGridResult result = new EUDataGridResult();
+        result.setRows(commodityList);
+        PageInfo<CommodityClass> pageInfo = new PageInfo<CommodityClass>(commodityList);
+        result.setTotal(pageInfo.getTotal());
+        return result;
     }
 }

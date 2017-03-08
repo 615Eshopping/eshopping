@@ -29,43 +29,35 @@ public class CommodityController {
     @RequestMapping(value = "/{commodityId}",method = RequestMethod.GET)
     @ResponseBody
     public ResultInfo getCommodityById(@PathVariable("commodityId") Integer commodityId){
-        ResultInfo resultInfo;
         try {
             Commodity commodity = commodityService.findByCommodityId(commodityId);
-            resultInfo = new ResultInfo(true,commodity);
+            return new ResultInfo(true,commodity);
         }catch (Exception e){
-            resultInfo = new ResultInfo(false,e.getMessage());
-            return  resultInfo;
+            return new ResultInfo(false,e.getMessage());
         }
-        return resultInfo;
     }
 
     @RequestMapping(value = "/{commodityId}/update",method = RequestMethod.PUT,produces = "application/json;charset=utf-8")
     @ResponseBody
     public ResultInfo updateCommodity(@PathVariable("commodityId") Integer commodityId, @RequestBody Commodity commodity){
-        ResultInfo resultInfo;
         commodity.setCommodityId(commodityId);
         try {
             commodityService.updateById(commodity);
-            resultInfo = new ResultInfo(true, ExceptionEnums.UPADTE_SUCCESS.getStateInfo());
+            return new ResultInfo(true, ExceptionEnums.UPADTE_SUCCESS.getStateInfo());
         }catch (RuntimeException e1){
             return new ResultInfo(false,e1.getMessage());
         }
-        return resultInfo;
     }
 
     @RequestMapping(value = "/{commodityId}/delete",method = RequestMethod.DELETE)
     @ResponseBody
     public ResultInfo deleteCommodity(@PathVariable("commodityId") Integer commodityId){
-        ResultInfo resultInfo;
         try {
             commodityService.deleteById(commodityId);
-            resultInfo = new ResultInfo(true,ExceptionEnums.DELETE_SUCCESS.getStateInfo());
+            return new ResultInfo(true,ExceptionEnums.DELETE_SUCCESS.getStateInfo());
         }catch (Exception e){
-            resultInfo = new ResultInfo(false,e.getMessage());
-            return resultInfo;
+            return new ResultInfo(false,e.getMessage());
         }
-        return resultInfo;
     }
 
     @RequestMapping(value = "/save",method = RequestMethod.POST)
@@ -85,4 +77,7 @@ public class CommodityController {
         EUDataGridResult result = commodityService.findAll(pageNums,rows);
         return result;
     }
+
+
+
 }

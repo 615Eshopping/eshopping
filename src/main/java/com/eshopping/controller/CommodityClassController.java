@@ -27,11 +27,9 @@ public class CommodityClassController {
     @RequestMapping(value = "/{commodityClassId}",method = RequestMethod.GET)
     @ResponseBody
     public ResultInfo findByCommodityClassId(@PathVariable("commodityClassId") Integer commodityClassId){
-        ResultInfo resultInfo;
         try {
             CommodityClass commodityClass = commodityClassService.findByCommodityClassId(commodityClassId);
-            resultInfo = new ResultInfo(true,commodityClass);
-            return resultInfo;
+            return new ResultInfo(true,commodityClass);
         }catch (RuntimeException e1){
             return new ResultInfo(false,e1.getMessage());
         }
@@ -40,11 +38,9 @@ public class CommodityClassController {
     @RequestMapping(value = "/save" , method = RequestMethod.POST)
     @ResponseBody
     public ResultInfo save(@RequestBody CommodityClass commodityClass){
-        ResultInfo resultInfo;
         try {
             commodityClassService.save(commodityClass);
-            resultInfo = new ResultInfo(true, ExceptionEnums.SAVE_SUCCESS.getStateInfo());
-            return resultInfo;
+            return new ResultInfo(true, ExceptionEnums.SAVE_SUCCESS.getStateInfo());
         }catch(RuntimeException e1){
             return new ResultInfo(false,e1.getMessage());
         }
@@ -53,11 +49,9 @@ public class CommodityClassController {
     @RequestMapping(value = "/{commodityClassId}/delete",method = RequestMethod.DELETE)
     @ResponseBody
     public ResultInfo deleteByCommodityClassId(@PathVariable("commodityClassId") Integer commodityClassId){
-        ResultInfo resultInfo;
         try{
             commodityClassService.deleteByCommodityClassId(commodityClassId);
-            resultInfo = new ResultInfo(true,ExceptionEnums.DELETE_SUCCESS.getStateInfo());
-            return  resultInfo;
+            return new ResultInfo(true,ExceptionEnums.DELETE_SUCCESS.getStateInfo());
         }catch (RuntimeException e1){
             return new ResultInfo(false,e1.getMessage());
         }
@@ -67,12 +61,10 @@ public class CommodityClassController {
     @ResponseBody
     public ResultInfo updateByCommodityClassId(@PathVariable("commodityClassId") Integer commodityClassId,
                                                @RequestBody CommodityClass commodityClass) {
-        ResultInfo resultInfo;
         commodityClass.setCommodityClassId(commodityClassId);
         try{
             commodityClassService.updateByCommodityClassId(commodityClass);
-            resultInfo = new ResultInfo(true,ExceptionEnums.DELETE_SUCCESS.getStateInfo());
-            return  resultInfo;
+            return new ResultInfo(true,ExceptionEnums.DELETE_SUCCESS.getStateInfo());
         }catch (RuntimeException e1) {
             return new ResultInfo(false,e1.getMessage());
         }
